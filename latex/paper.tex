@@ -1,0 +1,87 @@
+\documentclass{sig-alternate}
+
+% \usepackage{natbib}
+\usepackage{todonotes}
+
+\begin{document}
+
+ \conferenceinfo{GECCO'15,} {July 11-15, 2015, Madrid, Spain.}
+ \CopyrightYear{2015}
+ \crdata{TBA}
+ \clubpenalty = 10000
+ \widowpenalty = 10000
+
+\title{A Complexification Meta-Algorithm\\ for Continuous Parameter Optimization}
+
+\numberofauthors{3}
+\author{
+\alignauthor
+Melvin Gauci\\
+	\affaddr{Dept of Computer Science}\\
+	\affaddr{The University of Sheffield, UK}\\
+	\email{m.gauci@sheffield.ac.uk}
+%
+\alignauthor
+Wei Li\\
+	\affaddr{Dept of Automatic Control\\ and Systems Engineering}\\
+	\affaddr{The University of Sheffield, UK}\\
+	\email{wei.li11@sheffield.ac.uk}
+%
+\alignauthor
+Roderich Gro{\ss}\\
+	\affaddr{Dept of Automatic Control\\ and Systems Engineering}\\
+	\affaddr{The University of Sheffield, UK}\\
+	\email{r.gross@sheffield.ac.uk}
+}
+
+\maketitle
+
+\begin{abstract}
+
+The algorithm starts from one degree of freedom, optimizing a horizontal line fit to the object parameters. When the maximum number of degrees of freedom has been reached (i.e. equal to the problem dimension), the object parameters are reordered according to the fit. Now, a new epoch begins, again starting from one degree of freedom.
+
+An appealing feature of our meta-algorithm is that it can easily be wrapped around any optimizer which is converging prematurely on a given problem, potentially providing a quicker solution than tuning the optimizer or replacing it.
+
+This method is a meta-algorithm because it is not itself an optimization algorithm; rather, it operates \emph{on top of} an underlying optimization algorithm. The structure of the underlying algorithm is completely abstracted from the meta-algorithm, which treats it as a black box.
+
+\end{abstract}
+
+% A category with the (minimum) three required fields
+\category{G.1.6}{Optimization}{Global optimization, unconstrained optimization}
+%A category including the fourth, optional field follows...
+\category{I.2.8}{Problem Solving, Control Methods and Search}{Heuristic methods}
+
+\terms{Algorithms}
+
+\keywords{Complexification, continuous optimization, evolutionary algorithms, CMA-ES}
+
+\section{Introduction} 
+Stanley and Miikkulainen~\cite{Stanley:2002:a}.
+Chebyshev polynomials~\cite{Mason:2010:a, Rivlin:1974:a}.
+
+The term ``complexification'', in the context of optimization and search, was coined by Stanley and Miikkulainen~\cite{Stanley:2002:a}. They introduced an evolutionary algorithm called NEAT---Neuro-Evolution of Augementing Topologies---that simultaneously evolves the structure and parameters (e.g., connection weights) of a neural network.
+
+CMA-ES ``rates among the most successful evolutionary algorithms for continuous parameter optimization''~\cite{Beyer:2008:a}.
+
+Auger and Hansen~\cite{Auger:2005:a} introduced a restart strategy for CMA-ES. The algorithm is initially run with the default population size, calculated according to the problem dimension. Once progress stalls, based on a number of stopping criteria, a new epoch of the algorithm is started with a doubled population size.
+
+The paper proceeds as follows. Section~X details the complexification meta-algorithm.
+
+\section{Meta-Algorithm}
+\subsection{Chebyshev Polynomials}
+\subsection{Stop Criteria}
+In each run of the underlying optimization algorithm, the stop decision could either be delegated to the underlying algorithm, which might have its own criteria based on its internal workings (e.g. the population has converged). However, this is not necessary, and the stop decision can be taken by the meta-algorithm, treating the underlying optimization algorithm as a black box. The only necessary condition is that the optimizer provides the meta-algorithm with its best-so-far solution after each iteration. The meta-algorithm can decide to stop the optimization when progress has stalled (e.g. less than a certain percentage of progress in the last few iterations).
+
+
+\section{Methods}
+Max sum of Gaussians landscape generator~\cite{Gallagher:2006:a}.
+
+\section{Results}
+
+\section{Conclusions}
+Discuss implementing constraint handling in the future.
+
+\bibliographystyle{abbrv}
+\bibliography{references}
+
+\end{document}
